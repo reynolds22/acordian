@@ -25,7 +25,7 @@ export default function Acordian(){
         }
         setMultiple(copMultiple);
     };
-    console.log(select, multiple);
+
     return (
         <div className='wrapper'>
             <button onClick={()=> setEnableMultiSelection(!enableMultiSelection)}>Add Multi Selection</button>
