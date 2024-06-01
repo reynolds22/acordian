@@ -1,3 +1,6 @@
+body{
+    background: rgb(100, 255, 206);    
+}
 .wrapper{
     display: flex;
     height: 100vh;

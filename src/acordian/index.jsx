@@ -16,9 +16,16 @@ export default function Acordian(){
 
     function handleMultiSelection(getCurrentId){
         let copMultiple = [...multiple];
-        // const findIndexCurrentID = 
+        const findIndexCurrentID = copMultiple.indexOf(getCurrentId);
+        if (findIndexCurrentID === -1) {
+            copMultiple.push(getCurrentId)
+        }
+        else{
+            copMultiple.splice(findIndexCurrentID, 1)
+        }
+        setMultiple(copMultiple);
     };
-
+    console.log(select, multiple);
     return (
         <div className='wrapper'>
             <button onClick={()=> setEnableMultiSelection(!enableMultiSelection)}>Add Multi Selection</button>
@@ -30,14 +37,17 @@ export default function Acordian(){
                             className='title' 
                             onClick={ enableMultiSelection 
                                 ? ()=> handleMultiSelection(dataItem.id) 
-                                : ()=> setEnableMultiSelection(!enableMultiSelection)
+                                : ()=> handleSingleSelection(dataItem.id)
                             }
                         >
                             <h3>{dataItem.question}</h3>
                             <span>+</span>
                         </div>
                         {
-                            select === dataItem.id ? <div className='content'>{dataItem.answer}</div> : null
+                            select === dataItem.id 
+                            || multiple.indexOf(dataItem.id) !== -1 
+                            ? <div className='content'>{dataItem.answer}</div> 
+                            : null
                         }
                     </div>
                 )) : <div>No data found!</div>
